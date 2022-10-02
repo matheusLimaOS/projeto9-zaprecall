@@ -5,12 +5,6 @@ import Pergunta from "./Pergunta";
 import Footer from "./Footer";
 import { useState } from "react";
 
-const Answers = [
-    "../assets/img/icone_erro.png",
-    "../assets/img/icone_quase.png",
-    "../assets/img/icone_certo.png"
-]
-
 export default function TelaPerguntas() {
     let [iniciadas,setIniciadas] = useState([]);
     let [concluidas,setConcluidas] = useState([]);
@@ -42,13 +36,13 @@ function resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setR
     }
     else{
         let nova = [...iniciadas];
-        let a = nova.pop();
+        let a = nova.shift();
         setIniciadas(nova);
 
         let novaConc = [...concluidas,a];
         setConcluidas(novaConc);
 
-        let resposta = [...respostas,Answers[res]];
+        let resposta = [...respostas,res];
         setRespostas(resposta);
     }
 }
@@ -61,6 +55,7 @@ function iniciarQ(iniciadas,setIniciadas,index,state,setState){
         let nova = [...iniciadas,index]
         setIniciadas(nova);
         setState(2)
+        console.log(nova);
     }
 }
 

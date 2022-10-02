@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import certo from "../assets/img/icone_certo.png"
+import quase from "../assets/img/icone_quase.png"
+import erro from "../assets/img/icone_erro.png"
+
+let ans = [certo,quase,erro];
+
 
 export default function Footer(props){
     let {resposta,iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas} = props
@@ -7,12 +13,23 @@ export default function Footer(props){
             <ContainerBotoes>
                 <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#FF3030">Não lembrei</Button>
                 <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,1)}} cor = "#FF922E">Quase não lembrei</Button>
-                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#2FBE34">Zap!</Button>
+                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,0)}} cor = "#2FBE34">Zap!</Button>
             </ContainerBotoes>
-            <p>0/8 Concluidos</p>
+            <p>{respostas.length}/8 Concluidos</p>
+            <ContainerRespostas>
+                {
+                    respostas.map((resposta)=>{
+                        return <img src={ans[resposta]} alt="resposta"/>
+                    })
+                }
+            </ContainerRespostas>
         </FooterConcluidos>
     )
 }
+
+const ContainerRespostas = styled.div`
+    margin-top:10px
+`
 
 const Button = styled.button`
     background : ${props => props.cor};

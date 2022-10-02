@@ -2,21 +2,38 @@ import { useState } from "react";
 import styled from "styled-components";
 import play from "../assets/img/seta_play.png"
 import virar from "../assets/img/seta_virar.png"
+import certo from "../assets/img/icone_certo.png"
+import quase from "../assets/img/icone_quase.png"
+import erro from "../assets/img/icone_erro.png"
+
+let ans = [
+    {
+        image:certo,
+        color:"#2FBE34"
+    },
+    {
+        image:quase,
+        color:"#FF922E"
+    },
+    {
+        image:erro,
+        color:"#FF3030"
+    }];
 
 export default function Pergunta(props) {
     let [state, setState] = useState(0);
 
     if (state === 2 && props.respondida) {
         return(
-            <PerguntaFechada>
+            <PerguntaFechada cor={ans[props.resposta].color} linha={true}>
                 <p>Pergunta {props.index + 1}</p>
-                <img src={props.resposta} alt="resposta" />
+                <img src={ans[props.resposta].image} alt="resposta" />
             </PerguntaFechada>
         )
     }
     else if (state === 0) {
         return (
-            <PerguntaFechada>
+            <PerguntaFechada cor="#333333" linha={false}>
                 <p>Pergunta {props.index + 1}</p>
                 <img onClick={() => { props.iniciarQ(props.iniciadas, props.setIniciadas, props.index, state, setState) }} src={play} alt="seta" />
             </PerguntaFechada>
@@ -87,6 +104,7 @@ const PerguntaFechada = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: #333333;
+        color: ${props=>props.cor};
+        text-decoration-line: ${props=>props.linha ? "line-through":""};
     }
 `;
