@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export default function Footer(props){
+    let {resposta,iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas} = props
     return(
         <FooterConcluidos>
             <ContainerBotoes>
-                <Button cor = "#FF3030">Não lembrei</Button>
-                <Button cor = "#FF922E">Quase não lembrei</Button>
-                <Button cor = "#2FBE34">Zap!</Button>
+                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#FF3030">Não lembrei</Button>
+                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,1)}} cor = "#FF922E">Quase não lembrei</Button>
+                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#2FBE34">Zap!</Button>
             </ContainerBotoes>
             <p>0/8 Concluidos</p>
         </FooterConcluidos>

@@ -3,8 +3,18 @@ import Logo from "../assets/img/logo.png"
 import deck from "../decks";
 import Pergunta from "./Pergunta";
 import Footer from "./Footer";
+import { useState } from "react";
+
+const Answers = [
+    "../assets/img/icone_erro.png",
+    "../assets/img/icone_quase.png",
+    "../assets/img/icone_certo.png"
+]
 
 export default function TelaPerguntas() {
+    let [iniciadas,setIniciadas] = useState([]);
+    let [concluidas,setConcluidas] = useState([]);
+    let [respostas,setRespostas] = useState([]);
     return (
         <ScreenContainer>
             <LogoContainer>
@@ -13,12 +23,45 @@ export default function TelaPerguntas() {
             </LogoContainer>
             {
                 deck.map((card,index)=>{
-                    return <Pergunta card={card} index={index}/>
+                    if(concluidas.includes(index)){
+                        return <Pergunta iniciarQ={iniciarQ} iniciadas={iniciadas} setIniciadas={setIniciadas}  card={card} index={index} resposta={respostas[concluidas.indexOf(index)]} respondida={true}/>
+                    }
+                    else{
+                        return <Pergunta iniciarQ={iniciarQ} iniciadas={iniciadas} setIniciadas={setIniciadas}  card={card} index={index}/>
+                    }
                 })
             }
-            <Footer/>
+            <Footer resposta={resposta} iniciadas={iniciadas} setIniciadas={setIniciadas} concluidas={concluidas} setConcluidas={setConcluidas} respostas={respostas} setRespostas={setRespostas}/>
         </ScreenContainer>
     )
+}
+
+function resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,res){
+    if(iniciadas.length===0){
+        return;
+    }
+    else{
+        let nova = [...iniciadas];
+        let a = nova.pop();
+        setIniciadas(nova);
+
+        let novaConc = [...concluidas,a];
+        setConcluidas(novaConc);
+
+        let resposta = [...respostas,Answers[res]];
+        setRespostas(resposta);
+    }
+}
+
+function iniciarQ(iniciadas,setIniciadas,index,state,setState){
+    if(state===0){
+        setState(1);
+    }
+    if(state===1){
+        let nova = [...iniciadas,index]
+        setIniciadas(nova);
+        setState(2)
+    }
 }
 
 const ScreenContainer = styled.div`
