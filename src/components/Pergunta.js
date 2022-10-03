@@ -27,7 +27,7 @@ export default function Pergunta(props) {
         return(
             <PerguntaFechada data-identifier="flashcard" cor={ans[props.resposta].color} linha={true}>
                 <p>Pergunta {props.index + 1}</p>
-                <img src={ans[props.resposta].image} alt="resposta" />
+                <img data-identifier="flashcard-status" src={ans[props.resposta].image} alt="resposta" />
             </PerguntaFechada>
         )
     }
