@@ -11,11 +11,11 @@ export default function Footer(props){
     return(
         <FooterConcluidos>
             <ContainerBotoes>
-                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#FF3030">Não lembrei</Button>
-                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,1)}} cor = "#FF922E">Quase não lembrei</Button>
-                <Button onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,0)}} cor = "#2FBE34">Zap!</Button>
+                <Button data-identifier="forgot-btn" onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,2)}} cor = "#FF3030">Não lembrei</Button>
+                <Button data-identifier="almost-forgot-btn" onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,1)}} cor = "#FF922E">Quase não lembrei</Button>
+                <Button data-identifier="zap-btn" onClick={()=>{resposta(iniciadas,setIniciadas,concluidas,setConcluidas,respostas,setRespostas,0)}} cor = "#2FBE34">Zap!</Button>
             </ContainerBotoes>
-            <p>{respostas.length}/8 Concluidos</p>
+            <p data-identifier="flashcard-counter">{respostas.length}/8 Concluidos</p>
             <ContainerRespostas>
                 {
                     respostas.map((resposta)=>{
