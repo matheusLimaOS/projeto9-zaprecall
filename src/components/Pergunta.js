@@ -25,7 +25,7 @@ export default function Pergunta(props) {
 
     if (state === 2 && props.respondida) {
         return(
-            <PerguntaFechada cor={ans[props.resposta].color} linha={true}>
+            <PerguntaFechada data-identifier="flashcard" cor={ans[props.resposta].color} linha={true}>
                 <p>Pergunta {props.index + 1}</p>
                 <img src={ans[props.resposta].image} alt="resposta" />
             </PerguntaFechada>
@@ -33,25 +33,25 @@ export default function Pergunta(props) {
     }
     else if (state === 0) {
         return (
-            <PerguntaFechada cor="#333333" linha={false}>
+            <PerguntaFechada data-identifier="flashcard" cor="#333333" linha={false}>
                 <p>Pergunta {props.index + 1}</p>
-                <img onClick={() => { props.iniciarQ(props.iniciadas, props.setIniciadas, props.index, state, setState) }} src={play} alt="seta" />
+                <img data-identifier="flashcard-show-btn" onClick={() => { props.iniciarQ(props.iniciadas, props.setIniciadas, props.index, state, setState) }} src={play} alt="seta" />
             </PerguntaFechada>
         )
     }
     else if (state === 1) {
         return (
-            <PerguntaAberta>
-                <p>{props.card.Q}</p>
-                <img onClick={() => { props.iniciarQ(props.iniciadas, props.setIniciadas, props.index, state, setState) }} src={virar} alt="" />
+            <PerguntaAberta data-identifier="flashcard-index-item">
+                <p  data-identifier="flashcard-question" >{props.card.Q}</p>
+                <img data-identifier="flashcard-turn-btn" onClick={() => { props.iniciarQ(props.iniciadas, props.setIniciadas, props.index, state, setState) }} src={virar} alt="" />
             </PerguntaAberta>
         )
     }
 
     else {
         return (
-            <PerguntaAberta>
-                <p>{props.card.R}</p>
+            <PerguntaAberta data-identifier="flashcard-index-item">
+                <p data-identifier="flashcard-answer">{props.card.R }</p>
             </PerguntaAberta>
         )
     }
